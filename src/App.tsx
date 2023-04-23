@@ -11,13 +11,16 @@ function App() {
 					lg: `"nav nav" "aside main"`,
 				}}
 			>
+				{/* NAVIGATION BAR */}
 				<GridItem area={"nav"}>
 					<NavBar />
 				</GridItem>
+				{/* ASIDE */}
 				{/* only render aside on large device */}
 				<Show above="lg">
 					<GridItem area={"aside"}>Aside</GridItem>
 				</Show>
+				{/* MAIN CONTENT */}
 				<GridItem area={"main"}>
 					<GameGrid />
 				</GridItem>
