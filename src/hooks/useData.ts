@@ -30,7 +30,9 @@ const useData = <T>(endpoint: string, requestConfig?: AxiosRequestConfig, deps?:
             });
 
             return () => controller.abort();
-        // if dependencies is true, spread it. else empty array
+        
+        // since deps is optional, it can be undefined, cant spread undefined.
+        // so if dependencies is true, spread it. else empty array
 	}, deps ? [...deps] : []);
 
     return { data, error, isLoading };

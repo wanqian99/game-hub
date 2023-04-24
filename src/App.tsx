@@ -28,13 +28,19 @@ function App() {
 				{/* only render aside on large device */}
 				<Show above="lg">
 					<GridItem area={"aside"} paddingX={5}>
+						{/* if selectedGenres is true, send another request to get the games */}
+						{/* sets selected genre state, so it refreshes, 
+                        so that main content will display based on selected genre */}
 						<GenreList
 							onSelectGenre={(genre) => setSelectedGenre(genre)}
+							selectedGenre={selectedGenre}
 						/>
 					</GridItem>
 				</Show>
 				{/* MAIN CONTENT */}
 				<GridItem area={"main"}>
+					{/* gets selected genre state to display games */}
+					{/* displays all games if null */}
 					<GameGrid selectedGenre={selectedGenre} />
 				</GridItem>
 			</Grid>

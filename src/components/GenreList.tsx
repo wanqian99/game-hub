@@ -9,10 +9,13 @@ import {
 import useGenres, { Genre } from "../hooks/useGenres";
 
 interface Props {
+	// used to notify the parent (App component) that a genre has been selected
 	onSelectGenre: (genre: Genre) => void;
+	// for highlighting selected genre
+	selectedGenre: Genre | null;
 }
 
-const GenreList = ({ onSelectGenre }: Props) => {
+const GenreList = ({ selectedGenre, onSelectGenre }: Props) => {
 	const { data, isLoading, error } = useGenres();
 
 	if (error) return null;
@@ -32,6 +35,11 @@ const GenreList = ({ onSelectGenre }: Props) => {
 							<Button
 								onClick={() => onSelectGenre(genre)}
 								fontSize={"lg"}
+								fontWeight={
+									genre.id === selectedGenre?.id
+										? "bold"
+										: "normal"
+								}
 								variant={"link"}
 							>
 								{genre.name}

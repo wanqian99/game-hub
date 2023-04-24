@@ -15,6 +15,10 @@ export interface Game {
     metacritic: number;
 }
 
-const useGames = (selectedGenre: Genre | null) => useData<Game>('/games', {params: {genres: selectedGenre?.id}}, [selectedGenre?.id]);
+// selected genre can be either Genre type, or null (all games)
+const useGames = (selectedGenre: Genre | null) => 
+    // api path link, axios request config, dependencies
+    useData<Game>('/games', {params: {genres: selectedGenre?.id}}, 
+                            [selectedGenre?.id]);
 
 export default useGames;
