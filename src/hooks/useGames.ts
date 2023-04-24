@@ -16,9 +16,9 @@ export interface Game {
 }
 
 // selected genre can be either Genre type, or null (all games)
-const useGames = (selectedGenre: Genre | null) => 
+const useGames = (selectedGenre: Genre | null, selectedPlatform: Platform | null) => 
     // api path link, axios request config, dependencies
-    useData<Game>('/games', {params: {genres: selectedGenre?.id}}, 
-                            [selectedGenre?.id]);
+    useData<Game>('/games', {params: {genres: selectedGenre?.id, platforms: selectedPlatform?.id}}, 
+                            [selectedGenre?.id, selectedPlatform?.id]);
 
 export default useGames;
