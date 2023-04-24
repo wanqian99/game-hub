@@ -1,3 +1,4 @@
+import { GameQuery } from "../App";
 import useData from "./useData";
 import { Genre } from "./useGenres";
 
@@ -16,9 +17,14 @@ export interface Game {
 }
 
 // selected genre can be either Genre type, or null (all games)
-const useGames = (selectedGenre: Genre | null, selectedPlatform: Platform | null) => 
+const useGames = (gameQuery: GameQuery) => 
     // api path link, axios request config, dependencies
-    useData<Game>('/games', {params: {genres: selectedGenre?.id, platforms: selectedPlatform?.id}}, 
-                            [selectedGenre?.id, selectedPlatform?.id]);
+    useData<Game>(
+        '/games', 
+        {params: {
+            genres: gameQuery.genre?.id, 
+            platforms: gameQuery.platform?.id}
+        }, 
+        [gameQuery]);
 
 export default useGames;
