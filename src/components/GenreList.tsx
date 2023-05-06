@@ -13,10 +13,10 @@ interface Props {
 	// used to notify the parent (App component) that a genre has been selected
 	onSelectGenre: (genre: Genre) => void;
 	// for highlighting selected genre
-	selectedGenre: Genre | null;
+	selectedGenreId?: number;
 }
 
-const GenreList = ({ selectedGenre, onSelectGenre }: Props) => {
+const GenreList = ({ selectedGenreId, onSelectGenre }: Props) => {
 	// const { data, isLoading, error } = useGenres();
 	const { data } = useGenres();
 
@@ -44,7 +44,7 @@ const GenreList = ({ selectedGenre, onSelectGenre }: Props) => {
 								onClick={() => onSelectGenre(genre)}
 								fontSize={"lg"}
 								fontWeight={
-									genre.id === selectedGenre?.id
+									genre.id === selectedGenreId
 										? "bold"
 										: "normal"
 								}
