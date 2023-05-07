@@ -7,16 +7,7 @@ import PlatformSelector from "./components/PlatformSelector";
 import SortSelector from "./components/SortSelector";
 import GameHeading from "./components/GameHeading";
 
-export interface GameQuery {
-	genreId?: number;
-	platformId?: number;
-	sortOrder: string;
-	searchText: string;
-}
-
 function App() {
-	const [gameQuery, setGameQuery] = useState<GameQuery>({} as GameQuery);
-
 	return (
 		<>
 			<Grid
@@ -31,11 +22,7 @@ function App() {
 			>
 				{/* NAVIGATION BAR */}
 				<GridItem area={"nav"}>
-					<NavBar
-						onSearch={(searchText) =>
-							setGameQuery({ ...gameQuery, searchText })
-						}
-					/>
+					<NavBar />
 				</GridItem>
 				{/* ASIDE */}
 				{/* only render aside on large device */}
@@ -44,45 +31,24 @@ function App() {
 						{/* if selectedGenres is true, send another request to get the games */}
 						{/* sets selected genre state, so it refreshes, 
                         so that main content will display based on selected genre */}
-						<GenreList
-							onSelectGenre={(genre) =>
-								setGameQuery({
-									...gameQuery,
-									genreId: genre.id,
-								})
-							}
-							selectedGenreId={gameQuery.genreId}
-						/>
+						<GenreList />
 					</GridItem>
 				</Show>
 				{/* MAIN CONTENT */}
 				<GridItem area={"main"}>
 					<Box paddingLeft={2}>
-						<GameHeading gameQuery={gameQuery} />
+						<GameHeading />
 						<Flex marginBottom={5}>
 							<Box marginRight={5}>
-								<PlatformSelector
-									selectedPlatformId={gameQuery.platformId}
-									onSelectPlatform={(platform) =>
-										setGameQuery({
-											...gameQuery,
-											platformId: platform.id,
-										})
-									}
-								/>
+								<PlatformSelector />
 							</Box>
-							<SortSelector
-								sortOrder={gameQuery.sortOrder}
-								onSelectSortOrder={(sortOrder) =>
-									setGameQuery({ ...gameQuery, sortOrder })
-								}
-							/>
+							<SortSelector />
 						</Flex>
 					</Box>
 
 					{/* gets selected genre state to display games */}
 					{/* displays all games if null */}
-					<GameGrid gameQuery={gameQuery} />
+					<GameGrid />
 				</GridItem>
 			</Grid>
 		</>
