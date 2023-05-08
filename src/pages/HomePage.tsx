@@ -1,36 +1,30 @@
-import { Box, Flex, Grid, GridItem, Show } from "@chakra-ui/react";
-import NavBar from "./components/NavBar";
-import GameGrid from "./components/GameGrid";
-import GenreList from "./components/GenreList";
-import { useState } from "react";
-import PlatformSelector from "./components/PlatformSelector";
-import SortSelector from "./components/SortSelector";
-import GameHeading from "./components/GameHeading";
+import { Grid, Show, GridItem, Flex, Box } from "@chakra-ui/react";
+import GameGrid from "../components/GameGrid";
+import GameHeading from "../components/GameHeading";
+import GenreList from "../components/GenreList";
+import PlatformSelector from "../components/PlatformSelector";
+import SortSelector from "../components/SortSelector";
 
-function App() {
+const HomePage = () => {
 	return (
 		<>
 			<Grid
 				templateAreas={{
-					base: `"nav" "main"`,
-					lg: `"nav nav" "aside main"`,
+					base: `"main"`,
+					lg: `"aside main"`,
 				}}
 				templateColumns={{
 					base: "1fr",
 					lg: "200px 1fr",
 				}}
 			>
-				{/* NAVIGATION BAR */}
-				<GridItem area={"nav"}>
-					<NavBar />
-				</GridItem>
 				{/* ASIDE */}
 				{/* only render aside on large device */}
 				<Show above="lg">
 					<GridItem area={"aside"} paddingX={5}>
 						{/* if selectedGenres is true, send another request to get the games */}
 						{/* sets selected genre state, so it refreshes, 
-                        so that main content will display based on selected genre */}
+          so that main content will display based on selected genre */}
 						<GenreList />
 					</GridItem>
 				</Show>
@@ -53,6 +47,6 @@ function App() {
 			</Grid>
 		</>
 	);
-}
+};
 
-export default App;
+export default HomePage;
